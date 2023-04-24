@@ -82,7 +82,7 @@ public class Agents extends javax.swing.JFrame {
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(51, 204, 0));
-        jLabel8.setText("QUANTITY");
+        jLabel8.setText("PASSWORD");
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(51, 204, 0));
