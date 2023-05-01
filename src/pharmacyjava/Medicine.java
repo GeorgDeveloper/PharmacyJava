@@ -163,6 +163,9 @@ public class Medicine extends javax.swing.JFrame {
                 "ID", "MEDNAME", "MEDPRICE", "QUANTITY", "FABDATE", "EXPDATE", "COMPANY"
             }
         ));
+        MedicineTable.setIntercellSpacing(new java.awt.Dimension(0, 0));
+        MedicineTable.setRowHeight(25);
+        MedicineTable.setSelectionBackground(new java.awt.Color(0, 152, 0));
         MedicineTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 MedicineTableMouseClicked(evt);
