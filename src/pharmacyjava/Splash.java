@@ -126,6 +126,21 @@ public class Splash extends javax.swing.JFrame {
         Mysplash.dispose();
     }
     
+    public  void start() {
+        Splash Mysplash = new Splash();
+        Mysplash.setVisible(true);
+        try {
+            for (int i = 0; i <= 100; i++) {
+                Thread.sleep(40);
+                Mysplash.Myprogress.setValue(i);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        new Login().setVisible(true);
+        Mysplash.dispose();
+    }
+    
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel CloseLbl;
