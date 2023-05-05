@@ -67,18 +67,19 @@ public class Agents extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         AgentTable = new javax.swing.JTable();
         jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
+        CloseLbl = new javax.swing.JLabel();
         Aphone = new javax.swing.JTextField();
         AClearBtn = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        CompanyLbl = new javax.swing.JLabel();
+        MedicinesLbl = new javax.swing.JLabel();
+        SellingLbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
         setPreferredSize(new java.awt.Dimension(831, 527));
 
         jPanel1.setBackground(new java.awt.Color(51, 153, 0));
+        jPanel1.setMinimumSize(new java.awt.Dimension(837, 527));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -174,9 +175,14 @@ public class Agents extends javax.swing.JFrame {
         jLabel12.setForeground(new java.awt.Color(51, 204, 0));
         jLabel12.setText("AGENTS LIST");
 
-        jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(51, 204, 0));
-        jLabel13.setText("X");
+        CloseLbl.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        CloseLbl.setForeground(new java.awt.Color(51, 204, 0));
+        CloseLbl.setText("X");
+        CloseLbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CloseLblMouseClicked(evt);
+            }
+        });
 
         Aphone.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
 
@@ -230,8 +236,8 @@ public class Agents extends javax.swing.JFrame {
                                                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                                 .addComponent(Apass, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)))
-                        .addComponent(jLabel13)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(CloseLbl)
                         .addGap(20, 20, 20))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel12)
@@ -243,7 +249,7 @@ public class Agents extends javax.swing.JFrame {
                         .addComponent(AupdateBtn)
                         .addGap(68, 68, 68)
                         .addComponent(AClearBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(AdeletBtn)
                         .addGap(56, 56, 56))))
         );
@@ -253,7 +259,7 @@ public class Agents extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jLabel13))
+                    .addComponent(CloseLbl))
                 .addGap(39, 39, 39)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -285,17 +291,32 @@ public class Agents extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("COMPANY");
+        CompanyLbl.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        CompanyLbl.setForeground(new java.awt.Color(255, 255, 255));
+        CompanyLbl.setText("COMPANY");
+        CompanyLbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CompanyLblMouseClicked(evt);
+            }
+        });
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("MEDICINES");
+        MedicinesLbl.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        MedicinesLbl.setForeground(new java.awt.Color(255, 255, 255));
+        MedicinesLbl.setText("MEDICINES");
+        MedicinesLbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                MedicinesLblMouseClicked(evt);
+            }
+        });
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("SELLING");
+        SellingLbl.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        SellingLbl.setForeground(new java.awt.Color(255, 255, 255));
+        SellingLbl.setText("SELLING");
+        SellingLbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                SellingLblMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -304,9 +325,9 @@ public class Agents extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(11, 11, 11)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel3))
+                    .addComponent(CompanyLbl)
+                    .addComponent(MedicinesLbl)
+                    .addComponent(SellingLbl))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -315,11 +336,11 @@ public class Agents extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(85, 85, 85)
-                .addComponent(jLabel2)
+                .addComponent(CompanyLbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1)
+                .addComponent(MedicinesLbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
+                .addComponent(SellingLbl)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
@@ -331,7 +352,7 @@ public class Agents extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 831, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -377,7 +398,7 @@ public class Agents extends javax.swing.JFrame {
     }//GEN-LAST:event_AClearBtnMouseClicked
 
     private void AdeletBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AdeletBtnMouseClicked
-         if (Aid.getText().isEmpty()) {
+        if (Aid.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Enter the Agent to be Deleted");
         } else {
             try {
@@ -395,7 +416,7 @@ public class Agents extends javax.swing.JFrame {
     }//GEN-LAST:event_AdeletBtnMouseClicked
 
     private void AgentTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AgentTableMouseClicked
-            DefaultTableModel model = (DefaultTableModel) AgentTable.getModel();
+        DefaultTableModel model = (DefaultTableModel) AgentTable.getModel();
         int myindex = AgentTable.getSelectedRow();
         Aid.setText(model.getValueAt(myindex, 0).toString());
         Aname.setText(model.getValueAt(myindex, 1).toString());
@@ -405,7 +426,7 @@ public class Agents extends javax.swing.JFrame {
     }//GEN-LAST:event_AgentTableMouseClicked
 
     private void AupdateBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AupdateBtnMouseClicked
-         if (Aid.getText().isEmpty() || Aname.getText().isEmpty() || Aage.getText().isEmpty() || Aphone.getText().isEmpty()|| Apass.getText().isEmpty()) {
+        if (Aid.getText().isEmpty() || Aname.getText().isEmpty() || Aage.getText().isEmpty() || Aphone.getText().isEmpty() || Apass.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Missing Information");
 
         } else {
@@ -413,7 +434,7 @@ public class Agents extends javax.swing.JFrame {
                 Con = DriverManager.getConnection("jdbc:derby://localhost:1527/Pharmadb", "User1", "user1");
                 String UpdateQuery = "UPDATE USER1.AGENTS set ANAME='"
                         + Aname.getText() + "'" + ", AAGE=" + Aage.getText() + ""
-                        + ",APHONE='" + Aphone.getText() + "'" + ",APASS='" + Apass.getText() + "'" 
+                        + ",APHONE='" + Aphone.getText() + "'" + ",APASS='" + Apass.getText() + "'"
                         + ", AGENDER='" + GenderCb.getSelectedItem().toString() + "'" + "where AID = " + Aid.getText();
                 Statement Add = Con.createStatement();
                 Add.executeUpdate(UpdateQuery);
@@ -425,6 +446,38 @@ public class Agents extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_AupdateBtnMouseClicked
+
+    private void CompanyLblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CompanyLblMouseClicked
+        try {
+            new Company().setVisible(true);
+            this.dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(Medicine.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_CompanyLblMouseClicked
+
+    private void MedicinesLblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MedicinesLblMouseClicked
+        try {
+            new Medicine().setVisible(true);
+            this.dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(Medicine.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_MedicinesLblMouseClicked
+
+    private void SellingLblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SellingLblMouseClicked
+        try {
+            new Selling().setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(Agents.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.dispose();
+    }//GEN-LAST:event_SellingLblMouseClicked
+
+    private void CloseLblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CloseLblMouseClicked
+        System.exit(0);
+
+    }//GEN-LAST:event_CloseLblMouseClicked
 
     /**
      * @param args the command line arguments
@@ -476,13 +529,13 @@ public class Agents extends javax.swing.JFrame {
     private javax.swing.JTextField Apass;
     private javax.swing.JTextField Aphone;
     private javax.swing.JButton AupdateBtn;
+    private javax.swing.JLabel CloseLbl;
+    private javax.swing.JLabel CompanyLbl;
     private javax.swing.JComboBox<String> GenderCb;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel MedicinesLbl;
+    private javax.swing.JLabel SellingLbl;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;

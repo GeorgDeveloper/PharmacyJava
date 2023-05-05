@@ -27,7 +27,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
+          <Component id="jPanel1" alignment="0" pref="831" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -42,6 +42,9 @@
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="0" green="99" red="33" type="rgb"/>
         </Property>
+        <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[837, 527]"/>
+        </Property>
       </Properties>
 
       <Layout>
@@ -50,9 +53,9 @@
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="CompanyLbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="MedicinesLbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="SellingLbl" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jPanel2" max="32767" attributes="0"/>
@@ -64,11 +67,11 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
-                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                  <Component id="CompanyLbl" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  <Component id="MedicinesLbl" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                  <Component id="SellingLbl" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
               <Group type="102" alignment="1" attributes="0">
@@ -137,10 +140,10 @@
                                               </Group>
                                           </Group>
                                       </Group>
-                                      <EmptySpace pref="97" max="32767" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
                                   </Group>
                               </Group>
-                              <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
+                              <Component id="CloseLbl" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
@@ -154,7 +157,7 @@
                               <Component id="AupdateBtn" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
                               <Component id="AClearBtn" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="63" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                               <Component id="AdeletBtn" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
                           </Group>
@@ -168,7 +171,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="CloseLbl" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -456,7 +459,7 @@
                 <Property name="text" type="java.lang.String" value="AGENTS LIST"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel13">
+            <Component class="javax.swing.JLabel" name="CloseLbl">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="20" style="1"/>
@@ -466,6 +469,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="X"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="CloseLblMouseClicked"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="Aphone">
               <Properties>
@@ -490,7 +496,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JLabel" name="jLabel2">
+        <Component class="javax.swing.JLabel" name="CompanyLbl">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="1"/>
@@ -500,8 +506,11 @@
             </Property>
             <Property name="text" type="java.lang.String" value="COMPANY"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="CompanyLblMouseClicked"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel1">
+        <Component class="javax.swing.JLabel" name="MedicinesLbl">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="1"/>
@@ -511,8 +520,11 @@
             </Property>
             <Property name="text" type="java.lang.String" value="MEDICINES"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="MedicinesLblMouseClicked"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel3">
+        <Component class="javax.swing.JLabel" name="SellingLbl">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="1"/>
@@ -522,6 +534,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="SELLING"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="SellingLblMouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
