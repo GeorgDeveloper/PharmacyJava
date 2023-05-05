@@ -29,6 +29,7 @@ public class Medicine extends javax.swing.JFrame {
     public Medicine() throws SQLException {
         initComponents();
         SelectMed();
+        GetCompany();
     }
 
     Connection Con = null;
@@ -69,15 +70,17 @@ public class Medicine extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         MedicineTable = new javax.swing.JTable();
         jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        CloseLbl = new javax.swing.JLabel();
+        ClearBtn = new javax.swing.JButton();
+        AgentsLbl = new javax.swing.JLabel();
+        CompLbl = new javax.swing.JLabel();
+        SellingLbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(51, 153, 0));
+        jPanel1.setMinimumSize(new java.awt.Dimension(837, 527));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -123,7 +126,6 @@ public class Medicine extends javax.swing.JFrame {
         MedQty.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
 
         CompCb.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        CompCb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         AddBtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         AddBtn.setForeground(new java.awt.Color(51, 204, 0));
@@ -177,9 +179,23 @@ public class Medicine extends javax.swing.JFrame {
         jLabel12.setForeground(new java.awt.Color(51, 204, 0));
         jLabel12.setText("MEDICINES LIST");
 
-        jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(51, 204, 0));
-        jLabel13.setText("X");
+        CloseLbl.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        CloseLbl.setForeground(new java.awt.Color(51, 204, 0));
+        CloseLbl.setText("X");
+        CloseLbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CloseLblMouseClicked(evt);
+            }
+        });
+
+        ClearBtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        ClearBtn.setForeground(new java.awt.Color(51, 204, 0));
+        ClearBtn.setText("CLEAR");
+        ClearBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ClearBtnMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -189,30 +205,18 @@ public class Medicine extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel12)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jScrollPane1)
                         .addContainerGap())
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                        .addComponent(AddBtn)
-                                        .addGap(116, 116, 116)
-                                        .addComponent(DeleteBtn)
-                                        .addGap(65, 65, 65))
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGap(114, 114, 114)
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(MedPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(MedQty, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(MedName, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(MedId, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(222, 222, 222)))
-                                .addGap(58, 58, 58)
-                                .addComponent(UpdateBtn))
+                                .addGap(114, 114, 114)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(MedPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(MedQty, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(MedName, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(MedId, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -232,13 +236,23 @@ public class Medicine extends javax.swing.JFrame {
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addComponent(jLabel11)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(CompCb, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(180, 180, 180)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
-                        .addComponent(jLabel13)
-                        .addGap(20, 20, 20))))
+                                        .addComponent(CompCb, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(CloseLbl)
+                        .addGap(20, 20, 20))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel12)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(43, 43, 43)
+                                .addComponent(AddBtn)
+                                .addGap(62, 62, 62)
+                                .addComponent(DeleteBtn)
+                                .addGap(61, 61, 61)
+                                .addComponent(UpdateBtn)
+                                .addGap(65, 65, 65)
+                                .addComponent(ClearBtn)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -246,7 +260,7 @@ public class Medicine extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jLabel13))
+                    .addComponent(CloseLbl))
                 .addGap(39, 39, 39)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -275,7 +289,8 @@ public class Medicine extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(AddBtn)
                     .addComponent(UpdateBtn)
-                    .addComponent(DeleteBtn))
+                    .addComponent(DeleteBtn)
+                    .addComponent(ClearBtn))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel12)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
@@ -283,17 +298,32 @@ public class Medicine extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("AGENTS");
+        AgentsLbl.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        AgentsLbl.setForeground(new java.awt.Color(255, 255, 255));
+        AgentsLbl.setText("AGENTS");
+        AgentsLbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AgentsLblMouseClicked(evt);
+            }
+        });
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("COMPANY");
+        CompLbl.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        CompLbl.setForeground(new java.awt.Color(255, 255, 255));
+        CompLbl.setText("COMPANY");
+        CompLbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CompLblMouseClicked(evt);
+            }
+        });
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("SELLING");
+        SellingLbl.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        SellingLbl.setForeground(new java.awt.Color(255, 255, 255));
+        SellingLbl.setText("SELLING");
+        SellingLbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                SellingLblMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -302,9 +332,9 @@ public class Medicine extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel3))
+                    .addComponent(CompLbl)
+                    .addComponent(AgentsLbl)
+                    .addComponent(SellingLbl))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -317,11 +347,11 @@ public class Medicine extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(87, 87, 87)
-                .addComponent(jLabel2)
+                .addComponent(CompLbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1)
+                .addComponent(AgentsLbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
+                .addComponent(SellingLbl)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -346,6 +376,22 @@ public class Medicine extends javax.swing.JFrame {
         Rs1 = St1.executeQuery("SELECT * FROM USER1.MEDICINETB");
         MedicineTable.setModel(DbUtils.resultSetToTableModel(Rs1));
     }
+
+    public void GetCompany() {
+        try {
+            Con = DriverManager.getConnection("jdbc:derby://localhost:1527/Pharmadb", "User1", "user1");
+            St = Con.createStatement();
+            String query = "SELECT * FROM USER1.COMPANYTB";
+            Rs = St.executeQuery(query);
+            while (Rs.next()) {
+                String Mycomp = Rs.getString("COMPNAME");
+                CompCb.addItem(Mycomp);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void AddBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddBtnMouseClicked
         FDate = FabDate.getDate();
         MyFabdate = new java.sql.Date(FDate.getTime());
@@ -426,6 +472,46 @@ public class Medicine extends javax.swing.JFrame {
 
     }//GEN-LAST:event_MedicineTableMouseClicked
 
+    private void ClearBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ClearBtnMouseClicked
+        MedId.setText("");
+        MedName.setText("");
+        MedPrice.setText("");
+        MedQty.setText("");
+
+    }//GEN-LAST:event_ClearBtnMouseClicked
+
+    private void CompLblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CompLblMouseClicked
+        try {
+            new Company().setVisible(true);
+            this.dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(Medicine.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_CompLblMouseClicked
+
+    private void AgentsLblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AgentsLblMouseClicked
+        try {
+            new Agents().setVisible(true);
+            this.dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(Medicine.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_AgentsLblMouseClicked
+
+    private void SellingLblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SellingLblMouseClicked
+        try {
+            new Selling().setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(Medicine.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.dispose();
+    }//GEN-LAST:event_SellingLblMouseClicked
+
+    private void CloseLblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CloseLblMouseClicked
+        System.exit(0);
+
+    }//GEN-LAST:event_CloseLblMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -467,7 +553,11 @@ public class Medicine extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddBtn;
+    private javax.swing.JLabel AgentsLbl;
+    private javax.swing.JButton ClearBtn;
+    private javax.swing.JLabel CloseLbl;
     private javax.swing.JComboBox<String> CompCb;
+    private javax.swing.JLabel CompLbl;
     private javax.swing.JButton DeleteBtn;
     private com.toedter.calendar.JDateChooser ExpDate;
     private com.toedter.calendar.JDateChooser FabDate;
@@ -476,14 +566,11 @@ public class Medicine extends javax.swing.JFrame {
     private javax.swing.JTextField MedPrice;
     private javax.swing.JTextField MedQty;
     private javax.swing.JTable MedicineTable;
+    private javax.swing.JLabel SellingLbl;
     private javax.swing.JButton UpdateBtn;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
