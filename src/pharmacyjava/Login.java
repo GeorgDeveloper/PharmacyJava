@@ -5,6 +5,13 @@
  */
 package pharmacyjava;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Егор
@@ -17,6 +24,10 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         initComponents();
     }
+
+    Connection Con = null;
+    Statement St = null, St1 = null;
+    ResultSet Rs = null, Rs1 = null;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -34,13 +45,13 @@ public class Login extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        UserTxt = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
+        PassTxt = new javax.swing.JTextField();
+        ClearBtn = new javax.swing.JButton();
+        LoginBtn = new javax.swing.JButton();
+        closeLbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -100,7 +111,7 @@ public class Login extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(51, 204, 0));
         jLabel3.setText("User");
 
-        jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        UserTxt.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
 
         jLabel5.setBackground(new java.awt.Color(255, 255, 255));
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 22)); // NOI18N
@@ -112,19 +123,34 @@ public class Login extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(51, 204, 0));
         jLabel6.setText("Password");
 
-        jTextField2.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        PassTxt.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(51, 204, 0));
-        jButton1.setText("Clear");
+        ClearBtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        ClearBtn.setForeground(new java.awt.Color(51, 204, 0));
+        ClearBtn.setText("Clear");
+        ClearBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ClearBtnMouseClicked(evt);
+            }
+        });
 
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(51, 204, 0));
-        jButton2.setText("Login");
+        LoginBtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        LoginBtn.setForeground(new java.awt.Color(51, 204, 0));
+        LoginBtn.setText("Login");
+        LoginBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                LoginBtnMouseClicked(evt);
+            }
+        });
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(51, 204, 0));
-        jLabel7.setText("X");
+        closeLbl.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        closeLbl.setForeground(new java.awt.Color(51, 204, 0));
+        closeLbl.setText("X");
+        closeLbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                closeLblMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -140,15 +166,15 @@ public class Login extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jButton2)
+                                .addComponent(LoginBtn)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton1))
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(ClearBtn))
+                            .addComponent(PassTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(UserTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel7)))
+                        .addComponent(closeLbl)))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -157,19 +183,19 @@ public class Login extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jLabel7))
+                    .addComponent(closeLbl))
                 .addGap(78, 78, 78)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(UserTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(PassTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(ClearBtn)
+                    .addComponent(LoginBtn))
                 .addContainerGap(66, Short.MAX_VALUE))
         );
 
@@ -191,6 +217,33 @@ public class Login extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void LoginBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LoginBtnMouseClicked
+        String Query = "SELECT * FROM USER1.AGENTS where ANAME='" + UserTxt.getText() + "'" + "and APASS = '" + PassTxt.getText() + "'";
+
+        try {
+            Con = DriverManager.getConnection("jdbc:derby://localhost:1527/Pharmadb", "User1", "user1");
+            St = Con.createStatement();
+            Rs = St.executeQuery(Query);
+            if (Rs.next()) {
+                new Medicine().setVisible(true);
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(this, "WRONG USER ID OR PASSWORD");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_LoginBtnMouseClicked
+
+    private void ClearBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ClearBtnMouseClicked
+        UserTxt.setText("");
+        PassTxt.setText("");
+    }//GEN-LAST:event_ClearBtnMouseClicked
+
+    private void closeLblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeLblMouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_closeLblMouseClicked
 
     /**
      * @param args the command line arguments
@@ -228,19 +281,19 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton ClearBtn;
+    private javax.swing.JButton LoginBtn;
+    private javax.swing.JTextField PassTxt;
+    private javax.swing.JTextField UserTxt;
+    private javax.swing.JLabel closeLbl;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }
